@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import authenticationRouter from './routes/authenticationRoute';
 
 const app = express();
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
