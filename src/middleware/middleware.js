@@ -36,7 +36,7 @@ export const validatePropertyInput = (req, res, next) => {
     image, title, address, landArea, noOfRoom, noOfBath, yearBuild, purpose
   } = req.body;
 
-  if (!imageExtensionCheck(image)) {
+  if (image === '') {
     res.status(400).send('image of property must be uploaded');
   }
   if (title === '') {

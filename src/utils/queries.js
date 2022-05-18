@@ -7,14 +7,14 @@ CREATE TABLE "agents" (
 "last_name" varchar (200) NOT NULL,
 "phone_number" varchar (11) NOT NULL,
 "password" varchar (160) NOT NULL
-)
+);
 `;
 
 export const createPropertyTable = `
-DROP TABLE IF IT EXIST properties;
+DROP TABLE IF EXISTS properties;
 CREATE TABLE "properties" (
   "id" serial primary key,
-  "agent_id" interger REFERENCES agent(id),
+  "agent_id" integer REFERENCES agentS(id),
   "image_url" varchar NOT NULL,
   "title" varchar (200) NOT NULL,
   "address" varchar (200) NOT NULL,
@@ -24,8 +24,8 @@ CREATE TABLE "properties" (
   "no_of_beds" integer NOT NULL,
   "land_size" integer NOT NULL,
   "created_at" timestamp,
-  "updated_at" timestamp,
-)
+  "updated_at" timestamp
+);
 `;
 
 export const dropMessagesTable = 'DROP TABLE agents';

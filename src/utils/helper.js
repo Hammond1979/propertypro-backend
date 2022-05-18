@@ -21,7 +21,3 @@ export function validateEmail(email) {
     }
     return false;
   }
-
-  // export const token = jwt.sign({ ...newUser, id: data.rows.id }, process.env.TOKEN_KEY, {
-  //   expiresIn: '30m',
-  // });

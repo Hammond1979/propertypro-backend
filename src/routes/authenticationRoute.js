@@ -14,11 +14,11 @@ const authenticationRouter = express.Router();
 
 authenticationRouter.post('/signup', validateUserSignup, signupAgent);
 authenticationRouter.post('/login', agentLogin);
+authenticationRouter.post('/agent/properties', verifyToken, validatePropertyInput, createProperty)
 authenticationRouter.get('/properties', allProperties);
 authenticationRouter.get('/property/:id', getPropertyById);
-authenticationRouter.post('/post-property', verifyToken, validatePropertyInput, createProperty);
-authenticationRouter.get('/post-property/:id', verifyToken, agentProperties);
-authenticationRouter.put('/property/:id', verifyToken, editProperty);
-authenticationRouter.delete('/property/:id', verifyToken, deleteProperty);
+authenticationRouter.get('/agent/property/:id', verifyToken, agentProperties);
+authenticationRouter.put('/property/:userId', verifyToken, editProperty);
+authenticationRouter.delete('/agent/property/:id', verifyToken, deleteProperty);
 
 export default authenticationRouter;
