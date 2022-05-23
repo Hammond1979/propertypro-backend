@@ -40,6 +40,7 @@ export const getPropertyById = async (req, res) => {
 };
 export const editProperty = async (req, res, next) => {
   const { userId } = req.params;
+  const agentId = req.user.user.id;
   try {
     const data = await propertyModel.update(req.body, ` WHERE "id" = ${userId} `);
     return res.status(201).send({ message: 'user property is edited successfully', success: true });
@@ -50,6 +51,7 @@ export const editProperty = async (req, res, next) => {
 };
 export const deleteProperty = async (req, res) => {
   const { id } = req.params;
+  const agentId = req.user.user.id;
   try {
     const getProperty = await propertyModel.delete(` WHERE  id = '${id}' `);
     if (getProperty.rows === 0) {

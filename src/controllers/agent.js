@@ -19,19 +19,11 @@ export const signupAgent = async (req, res) => {
       return res.status(409).json({ message: 'Account already Exist' });
     }
     const data = await agentModel.insertWithReturn(columns, values);
-    const {id} = data.rows[0]
-    const newUser = { id, firstName, lastName, email};
-
-  const token = jwt.sign({ newUser}, process.env.TOKEN_KEY, {
-    expiresIn: '30m',
-  });
- 
     res.status(201).send({ user: newUser, token, message: 'Account created successfully' });
    } catch (err) {
      res.status(400).json({ message: err.stack });
    }
 };
-
 
 export const agentLogin = async (req, res) => {
   const { email, password } = req.body;
@@ -40,10 +32,7 @@ export const agentLogin = async (req, res) => {
     if (!validEmail.rows.length) return res.status(400).json({ messages: 'Email or password supplied is invalid' });
     const validPassword = await bcrypt.compare(password, validEmail.rows[0].password);
     if (!validPassword) return res.status(400).json({ message: 'Email or password supplied is invalid' });
-    const user = { email };
-    const token = jwt.sign({ user}, process.env.TOKEN_KEY, {
-      expiresIn: '30m',
-    });
+    const user = { token, firstName, lastName, email };
     return res.status(201).send({ ...user, token, message: 'Successfully Logged in' });
   } catch (err) {
     res.status(400).json({ message: err.stack });
