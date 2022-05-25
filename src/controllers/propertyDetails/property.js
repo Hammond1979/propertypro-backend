@@ -53,11 +53,10 @@ export const deleteProperty = async (req, res) => {
   const { id } = req.params;
   const agentId = req.user.user.id;
   try {
-    const getProperty = await propertyModel.delete(` WHERE  id = '${id}' `);
+    const getProperty = await propertyModel.delete(` WHERE  id = '${agentId}' AND user_id = ${id} `);
     if (getProperty.rows === 0) {
-      return res.status(409).json({ message: 'no property' });
+      res.status(200).json({message: 'Property is deleted successfully'});
     }
-    res.status(200).json({message: 'property is deleted successfully'});
   } catch (err) {
     res.status(500).json({ messages: err.stack.messages });
   }

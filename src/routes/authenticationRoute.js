@@ -16,10 +16,10 @@ const authenticationRouter = express.Router();
  * @swagger
  * /signup:
  *   post:
- *      summary: Create a new user.
- *      description: Create a new user to be able to post a property.
- *      responses:
- *       201:
+ *     summary: Retrieve a list of JSONPlaceholder users.
+ *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
+ *     responses:
+ *       200:
  *         description: A list of users.
  *         content:
  *           application/json:
@@ -34,12 +34,28 @@ const authenticationRouter = express.Router();
  *                       id:
  *                         type: integer
  *                         description: The user ID.
- *                         example: 0
- *                       name:
+ *                         example: 31
+ *                       first_name:
  *                         type: string
- *                         description: The user's name.
- *                         example: Leanne Graham
- */
+ *                         description: The user's firstName.
+ *                         example: 'Holamide'
+ *                       last_name:
+ *                         type: string
+ *                         description: The user's lastName.
+ *                         example: 'yinola'
+ *                       email:
+ *                         type: string
+ *                         description: The user's email.
+ *                         example: 'hola2021@gmail.com'
+ *                       password:
+ *                         type: string
+ *                         description: The user's password.
+ *                         example: 'sholakemi123'
+ *                       phone_number:
+ *                         type: string
+ *                         description: The user's phoneNumber.
+ *                         example: '09087654363'
+ */      
 authenticationRouter.post('/signup', validateUserSignup, signupAgent);
 authenticationRouter.post('/login', agentLogin);
 authenticationRouter.post('/agent/properties', verifyToken, validatePropertyInput, createProperty)

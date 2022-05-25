@@ -1,11 +1,14 @@
 import jwt from 'jsonwebtoken';
 
-const {id} = data.rows[0]
-    const newUser = { id, firstName, lastName, email};
-
-  const token = jwt.sign({ newUser}, process.env.TOKEN_KEY, {
+export const accessToken = (user) => {
+  const token = jwt.sign({ user }, process.env.TOKEN_KEY, {
     expiresIn: '30m',
+    
   });
+  return token;
+}
+
+
 export const verifyToken = (req, res, next) => {
   const token = req.headers['authentication'];
   if (!token) {
