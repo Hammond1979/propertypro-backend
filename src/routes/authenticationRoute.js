@@ -57,6 +57,35 @@ const authenticationRouter = express.Router();
  *                         example: '09087654363'
  */      
 authenticationRouter.post('/signup', validateUserSignup, signupAgent);
+
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Login agent.
+ *     description: Agent Login to be able to post, edit and delete property posted.
+ *     responses:
+ *       200:
+ *         description: Users logged in successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: integer
+ *                         description: The user ID.
+ *                         example: 31
+ *                       email:
+ *                         type: string
+ *                         description: The user's email.
+ *                         example: 'hola2021@gmail.com'
+ */
 authenticationRouter.post('/login', agentLogin);
 authenticationRouter.post('/agent/properties', verifyToken, validatePropertyInput, createProperty)
 authenticationRouter.get('/properties', allProperties);

@@ -19,9 +19,8 @@ export const allProperties = async (req, res) => {
   try {
     const getProperties = await propertyModel.select('*');
     if (getProperties.rows === 0) {
-      return res.status(409).json({ message: 'no property' });
+      res.status(200).json(getProperties.rows);
     }
-    res.status(200).json(getProperties.rows);
   } catch (err) {
     res.status(500).json({ messages: err.stack.messages });
   }
@@ -31,9 +30,8 @@ export const getPropertyById = async (req, res) => {
   try {
     const getProperty = await propertyModel.select('*', ` WHERE  id = '${id}' `);
     if (getProperty.rows === 0) {
-      return res.status(409).json({ message: 'no property' });
+      res.status(200).json(getProperty.rows);
     }
-    res.status(200).json(getProperty.rows);
   } catch (err) {
     res.status(500).json({ messages: err.stack.messages });
   }
@@ -42,7 +40,7 @@ export const editProperty = async (req, res, next) => {
   const { userId } = req.params;
   const agentId = req.user.user.id;
   try {
-    const data = await propertyModel.update(req.body, ` WHERE "id" = ${userId} `);
+    const data = await propertyModel.update(req.body, ` WHERE "id" = ${userId} AND user_id = ${id} `);
     return res.status(201).send({ message: 'user property is edited successfully', success: true });
   } catch (err) {
     res.status(500).json({ messages: err.stack });
