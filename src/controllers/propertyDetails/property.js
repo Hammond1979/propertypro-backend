@@ -59,7 +59,7 @@ export const deleteProperty = async (req, res) => {
     res.status(500).json({ messages: err.stack.messages });
   }
 };
-export const getAgentProperties = async (req, res) => {
+export const agentProperties = async (req, res) => {
   const userId = req.params.id;
   try {
     const getProperties = await propertyModel.select('*', ` WHERE agent_id = ${userId} `);
