@@ -3,7 +3,7 @@ import express from 'express';
 import { signupAgent, agentLogin } from '../controllers/Agent';
 
 import {
-    agentProperties, allProperties, createProperty,
+    getAgentProperties, allProperties, createProperty,
     deleteProperty, editProperty, getPropertyById
   } from '../controllers/propertyDetails/property';
 
@@ -90,7 +90,7 @@ authenticationRouter.post('/login', agentLogin);
 authenticationRouter.post('/agent/properties', verifyToken, validatePropertyInput, createProperty)
 authenticationRouter.get('/properties', allProperties);
 authenticationRouter.get('/property/:id', getPropertyById);
-authenticationRouter.get('/agent/property/:id', verifyToken, agentProperties);
+authenticationRouter.get('/agent/property/:id', verifyToken, getAgentProperties);
 authenticationRouter.put('/property/:userId', verifyToken, editProperty);
 authenticationRouter.delete('/agent/property/:id', verifyToken, deleteProperty);
 

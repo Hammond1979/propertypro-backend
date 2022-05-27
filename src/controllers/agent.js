@@ -1,5 +1,4 @@
 import Model from '../models/model';
-// const jwt = require('jsonwebtoken');
 import { accessToken } from '../utils/helper';
 const bcrypt = require('bcrypt');
 import dotenv from 'dotenv'
