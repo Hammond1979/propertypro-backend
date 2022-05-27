@@ -21,6 +21,25 @@ class Model {
       `;
     return this.pool.query(query);
   }
+  
+  async update(column, clause) {
+    const keys = Object.keys(column);
+    const selectedColumn = keys.forEach((key) => {
+      const query = `UPDATE  ${this.table} 
+      SET ${key} = '${column[key]}' ${clause}
+      `;
+      return this.pool.query(query);
+    });
+  }
+  
+  async delete(clause) {
+    let query = `DELETE FROM ${this.table}`;
+    if (clause) query += clause;
+    return this.pool.query(query);
+  }
 }
+
+
+
 
 export default Model;
