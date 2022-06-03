@@ -15,14 +15,14 @@ app.use(cookieParser());
 app.use('/v1', authenticationRouter);
 
 const swaggerDefinition = {
-  openapi: '3.0.0',
   info: {
-    title: 'Express API for JSONPlaceholder',
+    title: 'Property pro API',
     version: '1.0.0',
   },
+  basePath: '/v1',
   servers: [
     {
-      url: 'http://localhost:5001',
+      url: 'http://localhost:3000/v1',
       description: 'Development server',
     },
   ],

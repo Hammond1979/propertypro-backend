@@ -35,7 +35,10 @@ export const agentLogin = async (req, res) => {
     if (!validEmail.rows.length) return res.status(400).json({ messages: 'Email or password supplied is invalid' });
     const validPassword = await bcrypt.compare(password, validEmail.rows[0].password);
     if (!validPassword) return res.status(400).json({ message: 'Email or password supplied is invalid' });
-    const user = { token, firstName, lastName, email};
+    const user = { email };
+    const token = accessToken(user)
+    console.log(token)
+    
     return res.status(201).send({ ...user, token, message: 'Successfully Logged in' });
   } catch (err) {
     res.status(400).json({ message: err.stack });

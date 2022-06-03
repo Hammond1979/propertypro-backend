@@ -14,84 +14,102 @@ const authenticationRouter = express.Router();
 
 /**
  * @swagger
+ * definitions:
+ *   Register:
+ *     properties:
+ *       firstName:
+ *         type: string
+ *       lastName:
+ *         type: string
+ *       email:
+ *         type: string
+ *       password:
+ *         type: string
+ *       phoneNumber: 
+ *         type: string
+ *     example: {
+ *        "firstName": franklin,
+ *       "lastName": irems,
+ *       "email": frank@gmail.com,
+ *       "password": dealwap123,
+ *       "phoneNumber": 091234537
+ *      }
+ */
+
+/**
+ * @swagger
  * /signup:
  *   post:
- *     summary: Retrieve a list of JSONPlaceholder users.
- *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
+ *     tags:
+ *       - Users & Authentication
+ *     description: Register/Signs up a User
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: user
+ *         description: User object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Register'
  *     responses:
- *       200:
- *         description: A list of users.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 data:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       id:
- *                         type: integer
- *                         description: The user ID.
- *                         example: 31
- *                       first_name:
- *                         type: string
- *                         description: The user's firstName.
- *                         example: 'Holamide'
- *                       last_name:
- *                         type: string
- *                         description: The user's lastName.
- *                         example: 'yinola'
- *                       email:
- *                         type: string
- *                         description: The user's email.
- *                         example: 'hola2021@gmail.com'
- *                       password:
- *                         type: string
- *                         description: The user's password.
- *                         example: 'sholakemi123'
- *                       phone_number:
- *                         type: string
- *                         description: The user's phoneNumber.
- *                         example: '09087654363'
- */      
+ *       201:
+ *         description: Successfully created
+ *         example: {
+ *           "message": "Signed up successfully",
+ *           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXJyZW50VXNlciI6eyJpc0Jhbm5lZCI6MCwicGxhbiI6IlNpbHZlciIsImFjdGl2ZSI6ZmFsc2UsImlzQWRtaW4iOjAsImlkIjo1LCJ1c2VybmFtZSI6InRlc3RlciIsImZ1bGxOYW1lIjoiTmFzaXJ1IE9sYSIsImVtYWlsIjoibmFzaXJ1QGdtYWlsLmNvbSIsInVzZXJJZCI6NX0sImV4cCI6MTUxNTI1ODY4NywiaWF0IjoxNTE1MTcyMjg3fQ.1cISJjOboFY1zxqKEIZFpBJTSawG7BkMG6iGdhMxxGU"
+ *       }
+ *       400:
+ *         description: Bad Username, Password or Email
+ *       500:
+ *         description: Internal server error
+ */
 authenticationRouter.post('/signup', validateUserSignup, signupAgent);
+
+/**
+ * @swagger
+ * definitions:
+ *   Login:
+ *     properties:
+ *       email:
+ *         type: string
+ *       password:
+ *         type: string
+ *     example: {
+ *       "email": frank@gmail.com,
+ *       "password": dealwap123
+ *      }
+ */
+
 
 /**
  * @swagger
  * /login:
  *   post:
- *     summary: Login agent.
- *     description: Agent Login to be able to post, edit and delete property posted.
+ *     tags:
+ *       - Users & Authentication
+ *     description: login a User
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: user
+ *         description: User object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Login'
  *     responses:
- *       200:
- *         description: Users logged in successfully.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 data:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       id:
- *                         type: integer
- *                         description: The user ID.
- *                         example: 31
- *                       email:
- *                         type: string
- *                         description: The user's email.
- *                         example: 'hola2021@gmail.com'
+ *       201:
+ *         description: Successfully created
+ *         example: {
+ *           "message": "Logged in successfully",
+ *           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXJyZW50VXNlciI6eyJpc0Jhbm5lZCI6MCwicGxhbiI6IlNpbHZlciIsImFjdGl2ZSI6ZmFsc2UsImlzQWRtaW4iOjAsImlkIjo1LCJ1c2VybmFtZSI6InRlc3RlciIsImZ1bGxOYW1lIjoiTmFzaXJ1IE9sYSIsImVtYWlsIjoibmFzaXJ1QGdtYWlsLmNvbSIsInVzZXJJZCI6NX0sImV4cCI6MTUxNTI1ODY4NywiaWF0IjoxNTE1MTcyMjg3fQ.1cISJjOboFY1zxqKEIZFpBJTSawG7BkMG6iGdhMxxGU"
+ *       }
+ *       400:
+ *         description: Bad Username, Password or Email
+ *       500:
+ *         description: Internal server error
  */
-authenticationRouter.post('/login', agentLogin);
-authenticationRouter.post('/agent/properties', verifyToken, validatePropertyInput, createProperty)
-authenticationRouter.get('/properties', allProperties);
-authenticationRouter.get('/property/:id', getPropertyById);
-authenticationRouter.get('/agent/property/:id', verifyToken, agentProperties);
-authenticationRouter.put('/property/:userId', verifyToken, editProperty);
-authenticationRouter.delete('/agent/property/:id', verifyToken, deleteProperty);
+authenticationRouter.post ('/login', agentLogin);
 
 export default authenticationRouter;
