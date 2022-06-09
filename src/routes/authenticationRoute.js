@@ -133,7 +133,8 @@ authenticationRouter.post ('/login', agentLogin);
  *         type: string
  *       landSize:
  *         type: string
- *     example: {
+ *     example: [
+ *           {
  *       "image": game.png,
  *       "title": "duplex",
  *       "address": "isolo street",
@@ -142,7 +143,8 @@ authenticationRouter.post ('/login', agentLogin);
  *       "noOfBath": "3",
  *       "noOfBed": "2",
  *       "landSize": 200
- *     }
+ *        }
+ *       ]
  */
 
 /**
@@ -204,7 +206,8 @@ authenticationRouter.post ('/login', agentLogin);
  *         type: string
  *       landSize:
  *         type: string
- *     example: {
+ *     example: [
+ *          {
  *       "image": game.png,
  *       "title": "duplex",
  *       "address": "20, Allen str,surulere",
@@ -213,7 +216,8 @@ authenticationRouter.post ('/login', agentLogin);
  *       "noOfBath": "3",
  *       "noOfBed": "2",
  *       "landSize": 200
- *      }
+ *        }
+ *       ]
  */
 
 
@@ -232,7 +236,8 @@ authenticationRouter.post ('/login', agentLogin);
  *     responses:
  *       200:
  *         description: property uploaded successfully
- *     example: {
+ *     example: [
+ *            {
  *         "id": 14,
  *         "agent_id": 48,
  *         "image_url": "game.png",
@@ -243,7 +248,8 @@ authenticationRouter.post ('/login', agentLogin);
  *         "no_of_baths": 3,
  *         "no_of_beds": 2,
  *         "land_size": 200
- *        }
+ *            }
+ *           ]
  */
   authenticationRouter.get(
   '/properties', 
@@ -256,7 +262,7 @@ authenticationRouter.post ('/login', agentLogin);
  *   get:
  *     tags:
  *       - Property Details
- *     description: retrive all properties from database
+ *     description: To get a particular properties from database
  *     produces:
  *       - application/json
  *     parameters:
@@ -270,7 +276,8 @@ authenticationRouter.post ('/login', agentLogin);
  *     responses:
  *       200:
  *         description: property uploaded successfully
- *     example: {
+ *     example: [
+ *           {
  *         "id": 14,
  *         "agent_id": 48,
  *         "image_url": "game.png",
@@ -281,7 +288,8 @@ authenticationRouter.post ('/login', agentLogin);
  *         "no_of_baths": 3,
  *         "no_of_beds": 2,
  *         "land_size": 200
- *        }
+ *          }
+ *         ]
  */
 authenticationRouter.get('/property/:id', getPropertyById);
 
@@ -291,7 +299,7 @@ authenticationRouter.get('/property/:id', getPropertyById);
  *   get:
  *     tags:
  *       - Property Details
- *     description: retrive all properties from database
+ *     description: To retrieve a property from database by using the property id.
  *     produces:
  *       - application/json
  *     parameters:
@@ -303,7 +311,8 @@ authenticationRouter.get('/property/:id', getPropertyById);
  *       - name: access_token
  *         in: header
  *         type: string
- *     example: {
+ *     example: [
+ *          {
  *       "image": game.png,
  *       "title": "duplex",
  *       "address": "20, Allen str,surulere",
@@ -313,6 +322,7 @@ authenticationRouter.get('/property/:id', getPropertyById);
  *       "noOfBed": "2",
  *       "landSize": 200
  *        }
+ *       ]
  *     responses:
  *       200:
  *         description: property uploaded successfully
@@ -333,7 +343,7 @@ authenticationRouter.get('/property/:id', getPropertyById);
  *   put:
  *     tags:
  *       - Property Details
- *     description: retrive all properties from database
+ *     description: To edit a property from the database using the property id and the token.
  *     produces:
  *       - application/json
  *     parameters:
@@ -352,7 +362,8 @@ authenticationRouter.get('/property/:id', getPropertyById);
  *       - name: access_token
  *         in: header
  *         type: string
- *     example: {
+ *     example: [
+ *         {
  *       "agent_id": 52,
  *       "image_url": game.png,
  *       "title": "duplex",
@@ -363,6 +374,7 @@ authenticationRouter.get('/property/:id', getPropertyById);
  *       "no_of_bed": "2",
  *       "land_size": 200
  *        }
+ *       ]
  *     responses:
  *       200:
  *         description: property uploaded successfully
@@ -380,7 +392,7 @@ authenticationRouter.get('/property/:id', getPropertyById);
  *   delete:
  *     tags:
  *       - Property Details
- *     description: retrive all properties from database
+ *     description: To delete a property from database
  *     produces:
  *       - application/json
  *     parameters:
