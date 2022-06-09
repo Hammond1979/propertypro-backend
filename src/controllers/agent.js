@@ -24,7 +24,7 @@ export const signupAgent = async (req, res) => {
     const createdToken = accessToken(newUser)
     res.status(201).send({ user: newUser, createdToken, message: 'Account created successfully' });
    } catch (err) {
-     res.status(400).json({ message: err.stack });
+     res.status(400).json({ message: err });
    }
 };
 
@@ -41,7 +41,7 @@ export const agentLogin = async (req, res) => {
     
     return res.status(201).send({ ...user, token, message: 'Successfully Logged in' });
   } catch (err) {
-    res.status(400).json({ message: err.stack });
+    res.status(400).json({ message: err });
   }
 };
 

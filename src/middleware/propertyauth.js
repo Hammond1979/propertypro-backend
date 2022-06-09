@@ -3,7 +3,9 @@ import jwt from 'jsonwebtoken';
 export const verifyToken = (req, res, next) => {
   const token = req.headers['access_token'];
   if (!token) {
-    res.status(401).send('Denied Entry');
+    res.status(401).json({
+      message: "Token not supplied"
+    });
   }
   try {
     const checkToken = jwt.verify(token, process.env.TOKEN_KEY);
