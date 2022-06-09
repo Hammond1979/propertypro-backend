@@ -39,7 +39,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 app.use((err, req, res, next) => {
-    res.status(400).json({ error: err.stack });
+    res.status(400).json({ error: err });
   });
   
 

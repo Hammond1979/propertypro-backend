@@ -12,7 +12,6 @@ export const validateUserSignup = (req, res, next) => {
     errorList.push({
       message:'Last name should be a minimum of 6 characters',
     });
-    //console.log(req.body.phoneNumber.length, 'Phone number should be 11 numbers')
   }
   if (!req.body.phoneNumber || req.body.phoneNumber.length !== 11) {
     errorList.push({ message:'Phone number should be 11 numbers'});
